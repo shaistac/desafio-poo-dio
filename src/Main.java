@@ -1,3 +1,4 @@
+import br.com.dio.desafio.dominio.Conteudo;
 import br.com.dio.desafio.dominio.Curso;
 import br.com.dio.desafio.dominio.Mentoria;
 
@@ -16,6 +17,10 @@ public class Main {
         curso2.setTitulo("BootCamp Impulso JavaScript Evolution");
         curso2.setDescricao("BootCamp sobre Front-End");
         curso2.setCargaHoraria(104);
+
+        //n consigo criar um novo conteudo pq esta abstrato, mas consigo criar um curso/mentoria (polimorfismo)
+        //polimorfismo = tudo q tem em conteudo tem em curso, mas nem tudo q tem em curso tem em conteudo
+        /*Conteudo conteudo = new Curso();*/
 
         Mentoria mentoria = new Mentoria();
         mentoria.setTitulo("Mentoria X");

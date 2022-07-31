@@ -1,18 +1,23 @@
 package br.com.dio.desafio.dominio;
 
-public class Curso {
+public class Curso extends Conteudo{
 
     //modificadores de acesso na frente dos atributos
 
-    private String titulo;
-    private String descricao;
+    /*private String titulo;
+    private String descricao;*/
     private int cargaHoraria;
     //atributos encapsulados
+
+    @Override
+    public double calcularXp() {
+        return XP_PADRAO * cargaHoraria;
+    }
 
     public Curso() {
     }
 
-    public String getTitulo() {
+    /*public String getTitulo() {
         return titulo;
     }
 
@@ -26,7 +31,7 @@ public class Curso {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
-    }
+    }*/
 
     public int getCargaHoraria() {
         return cargaHoraria;
@@ -39,9 +44,11 @@ public class Curso {
     @Override
     public String toString() {
         return "Curso{" +
-                "titulo='" + titulo + '\'' +
-                ", descricao='" + descricao + '\'' +
+                "titulo='" + getTitulo() + '\'' +
+                ", descricao='" + getTitulo() + '\'' +
                 ", cargaHoraria=" + cargaHoraria +
                 '}';
     }
+
+
 }
