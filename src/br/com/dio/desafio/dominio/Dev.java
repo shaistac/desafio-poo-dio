@@ -2,6 +2,7 @@ package br.com.dio.desafio.dominio;
 
 import java.util.LinkedHashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 public class Dev {
@@ -10,11 +11,27 @@ public class Dev {
     private Set<Conteudo> conteudosConcluidos = new LinkedHashSet<>();//n usamos array pq o dev só pode se inscrever uma vez em determinado curso/mentoria
     //herança está possibiliando conteudo inscrito e concluido; e polimorfismo com a instancia de likedhashset atraves da classe mae Set
 
-    public void increverBootcamp(Bootcamp bootcamp){}
+    public void inscreverBootcamp(Bootcamp bootcamp){
+        this.conteudosInscritos.addAll(bootcamp.getConteudos()); //addALL pega tudo q tem dentro de conteudos e add ao conteudo inscritos
+        bootcamp.getDevsInscritos().add(this); //add o incrito ao bootcamp
+    }
 
-    public void progredir() {}
+    public void progredir() {
+        Optional<Conteudo> conteudo = this.conteudosInscritos.stream().findFirst(); //pegar na ordem
+        if(conteudo.isPresent()){
+            this.conteudosConcluidos.add(conteudo.get());
+            this.conteudosInscritos.remove(conteudo.get());
+        }else {
+            System.err.println("Você não está matriculado em nenhum conteúdo!");
+        }
+    }
 
-    public void calcularTotalXp(){}
+    public double calcularTotalXp(){
+        this.conteudosConcluidos
+                .stream()
+                .mapToDouble(Conteudo::calcularXp)
+                .sum();
+    }
 
     public String getNome() {
         return nome;
